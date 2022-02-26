@@ -7,6 +7,7 @@ class User
     {
         this.FirstName = firstName;
         this.LastName = lastName;
+        this.Username = this.firstName + " " + this.lastName;
         this.EmailAddress = emailAddress;
         this.Password = password;
     }   
@@ -504,6 +505,7 @@ class User
         
         $("#submitButton").on("click", function(event)
         {
+            
             console.log("Testing");
             event.preventDefault();
             if(FirstName.value != null)
