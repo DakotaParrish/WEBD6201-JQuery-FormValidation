@@ -18,6 +18,7 @@
         {
             "FirstName": "Admin",
             "LastName": "Admin",
+            "UserName": "Admin",
             "EmailAddress": "admin@example.com",
             "Username": "admin",
             "Password": "123456"

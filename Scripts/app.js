@@ -7,7 +7,7 @@ class User
     {
         this.FirstName = firstName;
         this.LastName = lastName;
-        this.Username = this.firstName + " " + this.lastName;
+        this.UserName = this.firstName + " " + this.lastName;
         this.EmailAddress = emailAddress;
         this.Password = password;
     }   
@@ -421,7 +421,9 @@ class User
             //TODO: FIX Spacing and Color on navbar text!!!!
             let userName = sessionStorage.getItem("user").split(',')[0];
             let contactListNavbar = $("a:contains('Contact Us')").parent();
-            contactListNavbar.after(`<li class=navbar-text"><a>${userName}</a></li>`);
+            let user = sessionStorage.getItem("user").split(',');
+            console.log(user);
+            contactListNavbar.after(`<li class="nav-item"><a class="nav-link disabled">${userName}</a></li>`);
         }
     }
 
@@ -461,10 +463,11 @@ class User
         let passwordSplit = password.split('');
         let check_passwordSplit = check_password.split('');
 
-        for(i = 0; i < passwordSplit.length; i++)
+        for(i = 0; i < check_passwordSplit.length; i++)
         {
             if(passwordSplit[i] != check_passwordSplit[i])
             {
+                console.log("Passwords do not match");
                 isMatch = false;
             }
         }
@@ -498,9 +501,9 @@ class User
     function DisplayRegisterPage()
     {
         console.log("Register Page");
-        let errorMessage = $("#ErrorMessage");
         $("#contentArea").prepend(`<div id="ErrorMessage">ERROR MESSAGE</div>`);
         $("#ErrorMessage").hide();
+        let errorMessage = $("#ErrorMessage");
         RegistrationFormValidation();
         
         $("#submitButton").on("click", function(event)
@@ -518,39 +521,49 @@ class User
                         {
                             if(ConfirmPassword(password.value, confirmPassword.value) == false)
                             {
-                                $("#password").Focus();
                                 errorMessage.show().addClass("alert alert-danger").text("Invalid Password! They do not match");
+                                $("#password").trigger("focus");
+                                $("#password").trigger("select");
                             }
                             else
                             {
                                 //TODO: Figure out why first name validation isn't working on form
                                 let newUser = new User(FirstName.value, lastName.value, emailAddress.value,password.value);
                                 console.log(newUser.toString() + "\nCreated!");
+                                FirstName.value = "";
+                                lastName.value = "";
+                                emailAddress.value = "";
+                                password.value = "";
+                                confirmPassword.value = "";
                             }
                             
                         }
                         else
                         {
-                            $("#password").Focus();
-                            errorMessage.show().addClass("alert alert-danger").text("Error! Password cannot be blank.");                            
+                            errorMessage.show().addClass("alert alert-danger").text("Error! Password cannot be blank.");
+                            $("#password").trigger("focus");
+                            $("#password").trigger("select");                            
                         }                
                     }
                     else
                     {
-                        $("#emailAddress").Focus();
-                        errorMessage.show().addClass("alert alert-danger").text("Error! Email Address cannot be blank.");                        
+                        errorMessage.show().addClass("alert alert-danger").text("Error! Email Address cannot be blank.");
+                        $("#emailAddress").trigger("focus");
+                        $("#emailAddress").trigger("select");                        
                     }
                 }
                 else
                 {
-                    $("#lastName").Focus();
-                    errorMessage.show().addClass("alert alert-danger").text("Error! Last Name cannot be blank.");                    
+                    errorMessage.show().addClass("alert alert-danger").text("Error! Last Name cannot be blank.");
+                    $("#lastName").trigger("focus");
+                    $("#lastName").trigger("select");                    
                 }
             }
             else
             {
-                $("#FirstName").Focus();
                 errorMessage.show().addClass("alert alert-danger").text("Error! First Name cannot be blank.");
+                $("#FirstName").trigger("focus");
+                $("#FirstName").trigger("select");
             }
         });
     }
