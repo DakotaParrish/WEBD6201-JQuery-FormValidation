@@ -7,6 +7,7 @@ class User
     {
         this.FirstName = firstName;
         this.LastName = lastName;
+        this.Username = this.firstName + " " + this.lastName;
         this.EmailAddress = emailAddress;
         this.Password = password;
     }   
@@ -480,9 +481,10 @@ class User
         
         $("#submitButton").on("click", function(event)
         {
+            
             console.log("Testing");
             event.preventDefault();
-            //TODO: Figure out why first name validation isn't working on form
+            //TODO: Figure out why first name validation isn't working on for
             let newUser = new User(FirstName.value, lastName.value, emailAddress.value,password.value);
             console.log(newUser.toString() + "\nCreated!");
         });
