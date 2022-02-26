@@ -3,11 +3,10 @@ class User
    // TODO: missing Getters and Setters
 
     // constructor
-    constructor(firstName = "", lastName = "", username = "", emailAddress = "", password = "")
+    constructor(firstName = "", lastName = "",  emailAddress = "", password = "")
     {
         this.FirstName = firstName;
         this.LastName = lastName;
-        this.UserName = username;
         this.EmailAddress = emailAddress;
         this.Password = password;
     }   
@@ -15,7 +14,7 @@ class User
     // overriden methods
     toString() 
     {
-      return `Name : ${this.FirstName} ${this.LastName}\nUsername: ${this.Username}\nEmail Address : ${this.EmailAddress}`;
+      return `Name : ${this.FirstName} ${this.LastName}\nEmail Address : ${this.EmailAddress}`;
     }   
 
     // utility methods
@@ -24,7 +23,6 @@ class User
         return {
             "FirstName": this.FirstName,
             "LastName": this.LastName,
-            "Username": this.Username,
             "EmailAddress": this.EmailAddress,
             "Password": this.Password
         }
@@ -34,7 +32,6 @@ class User
     {
         this.FirstName = data.FirstName;
         this.LastName = data.LastName;
-        this.Username = data.Username;
         this.EmailAddress = data.EmailAddress;
         this.Password = data.Password;
     }
@@ -43,7 +40,7 @@ class User
     {
         if(this.FirstName !== "" && this.LastName !== "" && this.Username !== "" && this.EmailAddress !== "" && this.Password !== "")
         {
-            return `${this.FirstName},${this.LastName},${this.Username},${this.EmailAddress},`;
+            return `${this.FirstName},${this.LastName},${this.EmailAddress},`;
         }
         console.error("One or more properties of the User Object are missing or invalid");
         return null;
@@ -463,7 +460,7 @@ class User
      */
     function RegistrationFormValidation()
     {
-        RegistrationPageValidation("firstName", /([A-Z][a-z]{1,})/, "Invalid First Name! First Name must be at least 2 letters and start with a capital letter!");
+        RegistrationPageValidation("FirstName", /([A-Z][a-z]{1,})/, "Invalid First Name! First Name must be at least 2 letters and start with a capital letter!");
         RegistrationPageValidation("lastName", /([A-Z][a-z]{1,})/, "Invalid Last Name! Last Name must be at least 2 letters and start with a capital letter!");
 
         RegistrationPageValidation("emailAddress", /^([a-zA-Z0-9._%-]{8,}@[a-zA-Z0-9-]{4,}\.[a-zA-Z]{2,6})*$/, "Please enter a valid email address");
@@ -479,14 +476,14 @@ class User
         console.log("Register Page");
         $("#contentArea").prepend(`<div id="ErrorMessage">ERROR MESSAGE</div>`);
         RegistrationFormValidation();
-
+        
         $("#submitButton").on("click", function(event)
         {
             console.log("Testing");
             event.preventDefault();
             //TODO: Figure out why first name validation isn't working on form
-            let newUser = new User(firstName.value, lastName.value, userName.value, emailAddress.value,password.value);
-            console.log(newUser.toString() + "Created!")
+            let newUser = new User(FirstName.value, lastName.value, emailAddress.value,password.value);
+            console.log(newUser.toString() + "\nCreated!");
         });
     }
 
