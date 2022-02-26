@@ -475,6 +475,7 @@ class User
     {
         console.log("Register Page");
         $("#contentArea").prepend(`<div id="ErrorMessage">ERROR MESSAGE</div>`);
+        $("#ErrorMessage").hide();
         RegistrationFormValidation();
         
         $("#submitButton").on("click", function(event)
