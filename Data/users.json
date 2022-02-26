@@ -16,7 +16,8 @@
             "Password": "123456"
         },
         {
-            "DisplayName": "Admin",
+            "FirstName": "Admin",
+            "LastName": "Admin",
             "EmailAddress": "admin@example.com",
             "Username": "admin",
             "Password": "123456"

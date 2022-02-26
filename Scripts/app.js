@@ -454,6 +454,29 @@ class User
         });
     }
 
+    function ConfirmPassword(password, check_password)
+    {
+        let isMatch = true;
+        let passwordSplit = password.split('');
+        let check_passwordSplit = check_password.split('');
+
+        for(i = 0; i < passwordSplit.length; i++)
+        {
+            if(passwordSplit[i] != check_passwordSplit[i])
+            {
+                isMatch = false;
+            }
+        }
+        
+        if(isMatch == false)
+        {
+            return isMatch;
+        }
+        else
+        {
+            return isMatch;
+        }
+    }
     /**
      * RegistrationFormValidation Function -
      *
@@ -474,6 +497,7 @@ class User
     function DisplayRegisterPage()
     {
         console.log("Register Page");
+        let errorMessage = $("#ErrorMessage");
         $("#contentArea").prepend(`<div id="ErrorMessage">ERROR MESSAGE</div>`);
         $("#ErrorMessage").hide();
         RegistrationFormValidation();
@@ -482,9 +506,50 @@ class User
         {
             console.log("Testing");
             event.preventDefault();
-            //TODO: Figure out why first name validation isn't working on form
-            let newUser = new User(FirstName.value, lastName.value, emailAddress.value,password.value);
-            console.log(newUser.toString() + "\nCreated!");
+            if(FirstName.value != null)
+            {
+                if(lastName.value != null)
+                {
+                    if(emailAddress.value != null)
+                    {
+                        if(password.value != null)
+                        {
+                            if(ConfirmPassword(password.value, confirmPassword.value) == false)
+                            {
+                                $("#password").Focus();
+                                errorMessage.show().addClass("alert alert-danger").text("Invalid Password! They do not match");
+                            }
+                            else
+                            {
+                                //TODO: Figure out why first name validation isn't working on form
+                                let newUser = new User(FirstName.value, lastName.value, emailAddress.value,password.value);
+                                console.log(newUser.toString() + "\nCreated!");
+                            }
+                            
+                        }
+                        else
+                        {
+                            $("#password").Focus();
+                            errorMessage.show().addClass("alert alert-danger").text("Error! Password cannot be blank.");                            
+                        }                
+                    }
+                    else
+                    {
+                        $("#emailAddress").Focus();
+                        errorMessage.show().addClass("alert alert-danger").text("Error! Email Address cannot be blank.");                        
+                    }
+                }
+                else
+                {
+                    $("#lastName").Focus();
+                    errorMessage.show().addClass("alert alert-danger").text("Error! Last Name cannot be blank.");                    
+                }
+            }
+            else
+            {
+                $("#FirstName").Focus();
+                errorMessage.show().addClass("alert alert-danger").text("Error! First Name cannot be blank.");
+            }
         });
     }
 
