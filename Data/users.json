@@ -2,13 +2,15 @@
     "users":
     [
         {
-            "DisplayName": "John Smith",
+            "FirstName": "John",
+            "LastName": "Smith",
             "EmailAddress": "john.smith@example.com",
             "Username": "johnsmith",
             "Password": "123456"
         },
         {
-            "DisplayName": "May Smith",
+            "FirstName": "May",
+            "LastName": "Smith",
             "EmailAddress": "may.smith@example.com",
             "Username": "maysmith",
             "Password": "123456"
