@@ -26,14 +26,14 @@
             "FirstName": "Dakota",
             "LastName": "Parrish",
             "EmailAddress": "dparrish@example.com",
-            "Username": "dparrish",
+            "Username": "dakotaparrish",
             "Password": "123456"
         },
         {
             "FirstName": "Jordan",
             "LastName": "Wriker",
             "EmailAddress": "jwriker@example.com",
-            "Username": "jwriker",
+            "Username": "jordanwriker",
             "Password": "123456"
         }
     ]
