@@ -419,11 +419,11 @@ class User
             })
 
             //TODO: FIX Spacing and Color on navbar text!!!!
-            let userName = sessionStorage.getItem("user").split(',')[0];
+            let username = sessionStorage.getItem("user").split(',')[2];
             let contactListNavbar = $("a:contains('Contact Us')").parent();
             let user = sessionStorage.getItem("user").split(',');
             console.log(user);
-            contactListNavbar.after(`<li class="nav-item"><a class="nav-link disabled">${userName}</a></li>`);
+            contactListNavbar.after(`<li class="nav-item"><a class="nav-link disabled">${username}</a></li>`);
         }
     }
 
