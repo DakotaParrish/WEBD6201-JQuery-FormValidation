@@ -7,7 +7,7 @@ class User
     {
         this.FirstName = firstName;
         this.LastName = lastName;
-        this.UserName = this.firstName + " " + this.lastName;
+        this.UserName = firstName.toLowerCase() + lastName.toLowerCase();
         this.EmailAddress = emailAddress;
         this.Password = password;
     }   
@@ -34,6 +34,7 @@ class User
         this.FirstName = data.FirstName;
         this.LastName = data.LastName;
         this.EmailAddress = data.EmailAddress;
+        this.UserName = data.Username;
         this.Password = data.Password;
     }
 
@@ -41,7 +42,7 @@ class User
     {
         if(this.FirstName !== "" && this.LastName !== "" && this.Username !== "" && this.EmailAddress !== "" && this.Password !== "")
         {
-            return `${this.FirstName},${this.LastName},${this.EmailAddress},`;
+            return `${this.FirstName},${this.LastName},${this.EmailAddress},${this.UserName},${this.Password},`;
         }
         console.error("One or more properties of the User Object are missing or invalid");
         return null;
@@ -52,16 +53,9 @@ class User
         let propertyArray = data.split(",");
         this.FirstName = propertyArray[0];
         this.LastName = propertyArray[1];
-        this.Username = propertyArray[2];
+        this.UserName = propertyArray[2];
         this.EmailAddress = propertyArray[3];
         this.Password = propertyArray[4];
-    }
-
-    createUsername() 
-    {
-
-        
-
     }
 }
 
@@ -426,7 +420,7 @@ class User
             })
 
             //Inserts username value into the nav bar between contact us and logout
-            let username = sessionStorage.getItem("user").split(',')[2];
+            let userName = sessionStorage.getItem("user").split(',')[3];
             let contactListNavbar = $("a:contains('Contact Us')").parent();
             let user = sessionStorage.getItem("user").split(',');
             console.log(user);
