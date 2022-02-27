@@ -338,13 +338,19 @@ class User
                 break;
         }
     }
-
+    /**
+     * DisplayLoginPage Function - Displays the Login page.
+     *
+     */
     function DisplayLoginPage()
     {
         console.log("Login Page");
         let messageArea = $("#messageArea");
         messageArea.hide();
 
+        /**
+         * Click event for login button
+         */
         $("#loginButton").on("click", function()
         {
             let success = false;
@@ -458,21 +464,37 @@ class User
         });
     }
 
+    /**
+     * Takes the password and confirm password values and breaks them in to character arrays.
+     * It then checks to see if both arrays are the same length and if so compares each character.
+     * Returns true or false depending on if the two strings match.
+     * 
+     * @param {string} password 
+     * @param {string} check_password 
+     * @returns {boolean} isMatch
+     */
     function ConfirmPassword(password, check_password)
     {
         let isMatch = true;
         let passwordSplit = password.split('');
         let check_passwordSplit = check_password.split('');
 
-        for(i = 0; i < check_passwordSplit.length; i++)
+        if(passwordSplit.length == check_passwordSplit.length)
         {
-            if(passwordSplit[i] != check_passwordSplit[i])
+            for(i = 0; i < check_passwordSplit.length; i++)
             {
-                console.log("Passwords do not match");
-                isMatch = false;
+                if(passwordSplit[i] != check_passwordSplit[i])
+                {
+                    console.log("Passwords do not match");
+                    isMatch = false;
+                }
             }
         }
-        
+        else
+        {
+            isMatch = false;
+        }
+
         if(isMatch == false)
         {
             return isMatch;
@@ -498,7 +520,7 @@ class User
     }
 
     /**
-     * DisplayRegisterPage Function - 
+     * DisplayRegisterPage Function - Displays the registration page.
      *
      */
     function DisplayRegisterPage()
@@ -511,6 +533,10 @@ class User
         password.text = "Password";
         RegistrationFormValidation();
         
+        /**
+         *  Click event for the submit button. Checks to see if all fields have data and if they do it check to see if both passwords are the same.
+         * If the data is fine a new User is created and the form is reset. If there is a problem with the data an error is displayed. 
+         */
         $("#submitButton").on("click", function(event)
         {
             
@@ -532,7 +558,6 @@ class User
                             }
                             else
                             {
-                                //TODO: Figure out why first name validation isn't working on form
                                 let newUser = new User(FirstName.value, lastName.value, emailAddress.value,password.value);
                                 console.log(newUser.toString() + "\nCreated!");
                                 FirstName.value = "";
