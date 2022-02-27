@@ -1,3 +1,12 @@
+/*************************************************************************************************************************************
+ * Written By: Dakota Parrish 100764514, Jordan Wriker 100445715
+ * Program Name: WEBD6201-JQuery And Form Validation
+ * Due Date: Sunday February 27, 2022
+ * Description: Added login and register page functionality using JQuery. Used Regular expressions to validate each input
+ * field on register page. Once User has successfully logged in, username is injected into nav bar between contact us and
+ * login/logout. If there is an invalid input on the register page, error is shown. Once user has correct information entered on register page,
+ * console displays output.
+ */
 class User
 {
    // TODO: missing Getters and Setters
@@ -400,6 +409,11 @@ class User
         });
     }
 
+    /**
+     * CheckLogin() - Method that swaps the login navbar item to logout as well as inserts
+     * the username for the login in between the Contact Us navbar item and Login/Logout navbar item.
+     *
+     */
     function CheckLogin()
     {
         // if user is logged in, then...
@@ -410,6 +424,7 @@ class User
                 `<a id="logout" class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>`
             );
 
+            /*Performs logout action*/
             $("#logout").on("click", function()
             {
                 // perform logout
@@ -430,7 +445,8 @@ class User
 
 
     /**
-     * RegistrationPageValidation Function -
+     * RegistrationPageValidation Function - This method validates an input text field in the form and displays
+     * an error in the message area located on the register.html page.
      *
      * @param {*} input_field_ID
      * @param {*} regular_expression
@@ -483,7 +499,8 @@ class User
         }
     }
     /**
-     * RegistrationFormValidation Function -
+     * RegistrationFormValidation Function - Validates for each input on the register.html page by using Regular expressions
+     * as well as using the RegistrationPageValidation() method.
      *
      */
     function RegistrationFormValidation()
@@ -613,6 +630,7 @@ class User
             break;
         }
 
+        //Calls the CheckLogin() function
         CheckLogin();
 
     }
