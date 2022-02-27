@@ -21,6 +21,20 @@
             "EmailAddress": "admin@example.com",
             "Username": "admin",
             "Password": "123456"
+        },
+        {
+            "FirstName": "Dakota",
+            "LastName": "Parrish",
+            "EmailAddress": "dparrish@example.com",
+            "Username": "dparrish",
+            "Password": "123456"
+        },
+        {
+            "FirstName": "Jordan",
+            "LastName": "Wriker",
+            "EmailAddress": "jwriker@example.com",
+            "Username": "jwriker",
+            "Password": "123456"
         }
     ]
 }
