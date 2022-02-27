@@ -55,7 +55,14 @@ class User
         this.Username = propertyArray[2];
         this.EmailAddress = propertyArray[3];
         this.Password = propertyArray[4];
-    } 
+    }
+
+    createUsername() 
+    {
+
+        
+
+    }
 }
 
 // IIFE -- Immediately Invoked Function Express
@@ -349,7 +356,7 @@ class User
             let success = false;
 
             // create an empty user object
-            let newUser = new core.User();
+            let newUser = new User();
 
             // use jQuery shortcut to lod the users.json file
             $.get("./Data/users.json", function(data)
@@ -418,12 +425,12 @@ class User
                 location.href = "login.html";
             })
 
-            //Inserts username value into the nav bar between contact us and logout
-            let username = sessionStorage.getItem("user").split(',')[3];
+            //TODO: FIX Spacing and Color on navbar text!!!!
+            let userName = sessionStorage.getItem("user").split(',')[0];
             let contactListNavbar = $("a:contains('Contact Us')").parent();
             let user = sessionStorage.getItem("user").split(',');
             console.log(user);
-            contactListNavbar.after(`<li class="nav-item"><a class="nav-link disabled">${username}</a></li>`);
+            contactListNavbar.after(`<li class="nav-item"><a class="nav-link disabled">${userName}</a></li>`);
         }
     }
 
@@ -492,8 +499,6 @@ class User
 
         RegistrationPageValidation("emailAddress", /^([a-zA-Z0-9._%-]{8,}@[a-zA-Z0-9-]{4,}\.[a-zA-Z]{2,6})*$/, "Please enter a valid email address");
         RegistrationPageValidation("password", /^([a-zA-Z0-9._%-]{6,})*$/, "Invalid Password! Password must be at least 6 characters in length");
-
-        RegistrationPageValidation("confirmPassword", /^([a-zA-Z0-9._%-]{6,})*$/, "Invalid Password! Password must be at least 6 characters in length");
     }
 
     /**
@@ -506,6 +511,8 @@ class User
         $("#contentArea").prepend(`<div id="ErrorMessage">ERROR MESSAGE</div>`);
         $("#ErrorMessage").hide();
         let errorMessage = $("#ErrorMessage");
+        emailAddress.value = "Email";
+        password.value = "Password";
         RegistrationFormValidation();
         
         $("#submitButton").on("click", function(event)
@@ -529,7 +536,7 @@ class User
                             }
                             else
                             {
-                                //
+                                //TODO: Figure out why first name validation isn't working on form
                                 let newUser = new User(FirstName.value, lastName.value, emailAddress.value,password.value);
                                 console.log(newUser.toString() + "\nCreated!");
                                 FirstName.value = "";
