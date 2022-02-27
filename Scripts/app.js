@@ -419,7 +419,7 @@ class User
             })
 
             //Inserts username value into the nav bar between contact us and logout
-            let username = sessionStorage.getItem("user").split(',')[2];
+            let username = sessionStorage.getItem("user").split(',')[3];
             let contactListNavbar = $("a:contains('Contact Us')").parent();
             let user = sessionStorage.getItem("user").split(',');
             console.log(user);
@@ -492,6 +492,8 @@ class User
 
         RegistrationPageValidation("emailAddress", /^([a-zA-Z0-9._%-]{8,}@[a-zA-Z0-9-]{4,}\.[a-zA-Z]{2,6})*$/, "Please enter a valid email address");
         RegistrationPageValidation("password", /^([a-zA-Z0-9._%-]{6,})*$/, "Invalid Password! Password must be at least 6 characters in length");
+
+        RegistrationPageValidation("confirmPassword", /^([a-zA-Z0-9._%-]{6,})*$/, "Invalid Password! Password must be at least 6 characters in length");
     }
 
     /**
@@ -527,7 +529,7 @@ class User
                             }
                             else
                             {
-                                //TODO: Figure out why first name validation isn't working on form
+                                //
                                 let newUser = new User(FirstName.value, lastName.value, emailAddress.value,password.value);
                                 console.log(newUser.toString() + "\nCreated!");
                                 FirstName.value = "";
