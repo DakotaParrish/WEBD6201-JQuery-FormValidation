@@ -418,7 +418,7 @@ class User
                 location.href = "login.html";
             })
 
-            //TODO: FIX Spacing and Color on navbar text!!!!
+            //Inserts username value into the nav bar between contact us and logout
             let username = sessionStorage.getItem("user").split(',')[2];
             let contactListNavbar = $("a:contains('Contact Us')").parent();
             let user = sessionStorage.getItem("user").split(',');
