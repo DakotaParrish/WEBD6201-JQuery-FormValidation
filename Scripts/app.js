@@ -499,6 +499,8 @@ class User
 
         RegistrationPageValidation("emailAddress", /^([a-zA-Z0-9._%-]{8,}@[a-zA-Z0-9-]{4,}\.[a-zA-Z]{2,6})*$/, "Please enter a valid email address");
         RegistrationPageValidation("password", /^([a-zA-Z0-9._%-]{6,})*$/, "Invalid Password! Password must be at least 6 characters in length");
+
+        RegistrationPageValidation("confirmPassword", /^([a-zA-Z0-9._%-]{6,})*$/, "Invalid Password! Password must be at least 6 characters in length");
     }
 
     /**
