@@ -507,8 +507,8 @@ class User
         $("#contentArea").prepend(`<div id="ErrorMessage">ERROR MESSAGE</div>`);
         $("#ErrorMessage").hide();
         let errorMessage = $("#ErrorMessage");
-        emailAddress.value = "Email";
-        password.value = "Password";
+        emailAddress.text = "Email";
+        password.text = "Password";
         RegistrationFormValidation();
         
         $("#submitButton").on("click", function(event)
